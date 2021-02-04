@@ -1,0 +1,364 @@
+spring:
+  profiles:
+    active: prod
+---
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    oracle:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc_url: jdbc:oracle:thin:@localhost:1521:ORCL
+      username: system
+      password: 960064
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    hive:
+      type: com.alibaba.druid.pool.DruidDataSource
+      jdbc_url: jdbc:hive2://10.2.55.99:10000/shujuku6
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+      username: root
+      password:
+      #      下面这些是hive的细节配置，可以忽略
+      #连接池统一配置，应用到所有的数据源
+    commonConfig:
+      initialSize: 3
+      minIdle: 5
+      maxIdle: 10
+      maxActive: 50
+      maxWait: 100000
+      timeBetweenEvictionRunsMillis: 100000
+      minEvictableIdleTimeMillis: 50000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      filters: stat
+  profiles: dev
+server:
+  port: 12123
+  connection-timeout:
+#配置请求命令地址
+url:
+  distribution: http://localhost:12123/command
+  forecast:
+    SectionUrl: http://10.2.55.95:12133/section_forecasting
+    TransferUrl: http://10.2.55.95:12134/transfer_forecasting
+    AccessStation: http://10.2.55.95:12135/station_forecasting
+    OdUrl: http://10.2.55.95:12136/od_forecasting
+#配置netRouterIp和端口号
+netRouter:
+  ip1: 10.2.55.48
+  ip2: 10.2.55.48
+  port1: 49281
+  port2: 32274
+#配置分配后数据表名字
+table:
+  theStatic:
+    oneSectionTable: SCOTT.ONE_SC_18
+    oneStationTable: SCOTT.ONE_ST_18
+    oneTransferTable: SCOTT.ONE_TS_18
+    halfSectionTable: SCOTT.HALF_SC_18
+    halfStationTable: SCOTT.HALF_ST_18
+    halfTransferTable: SCOTT.HALF_TS_18
+    quarterSectionTable: SCOTT.QUA_SC_18
+    quarterStationTable: SCOTT.QUA_ST_18
+    quarterTransferTable: SCOTT.QUA_TS_18
+  theDynamic:
+    oneSectionTable: SCOTT.DN_ONE_SC_18
+    oneStationTable: SCOTT.DN_ONE_ST_18
+    oneTransferTable: SCOTT.DN_ONE_TS_18
+    halfSectionTable: SCOTT.DN_HALF_SC_18
+    halfStationTable: SCOTT.DN_HALF_ST_18
+    halfTransferTable: SCOTT.DN_HALF_TS_18
+    quarterSectionTable: SCOTT.DN_QUA_SC_18
+    quarterStationTable: SCOTT.DN_QUA_ST_18
+    quarterTransferTable: SCOTT.DN_QUA_TS_18
+theGet: shujuku6
+#配置日志
+logging:
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+  file:
+    path: E:\ideagit\pfdistribution\log
+thread:
+  corePoolSize: 1
+  maxPoolSize: 1
+  queueCapacity: 999999
+  threadNamePrefix:
+    name1: 计算线程-
+    name2: 调度线程-
+---
+#服务器部署环境
+spring:
+  aop:
+    proxy-target-class: true
+    #      crscd服务器数据库（通号）
+  datasource:
+    oracle:
+      jdbc_url: jdbc:oracle:thin:@10.2.55.48:1521:ORCL
+      username: system
+      password: 123456
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    hive:
+      jdbc_url: jdbc:hive2://10.2.55.99:10000/shujuku6
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+      username: root
+      password:
+    commonConfig:
+      initialSize: 3
+      minIdle: 5
+      maxIdle: 10
+      maxActive: 50
+      maxWait: 100000
+      timeBetweenEvictionRunsMillis: 100000
+      minEvictableIdleTimeMillis: 50000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      filters: stat
+  profiles: prod
+server:
+  port: 12123
+url:
+  distribution: http://localhost:12123/command
+  forecast:
+    SectionUrl: http://10.2.55.95:12133/section_forecasting
+    TransferUrl: http://10.2.55.95:12134/transfer_forecasting
+    AccessStation: http://10.2.55.95:12135/station_forecasting
+    OdUrl: http://10.2.55.95:12136/od_forecasting
+netRouter:
+  ip1: 10.2.55.48
+  ip2: 10.2.55.48
+  port1: 49281
+  port2: 32274
+#配置分配后数据表名字
+table:
+  theStatic:
+    oneSectionTable: SCOTT.ONE_SC_18
+    oneStationTable: SCOTT.ONE_ST_18
+    oneTransferTable: SCOTT.ONE_TS_18
+    halfSectionTable: SCOTT.HALF_SC_18
+    halfStationTable: SCOTT.HALF_ST_18
+    halfTransferTable: SCOTT.HALF_TS_18
+    quarterSectionTable: SCOTT.QUA_SC_18
+    quarterStationTable: SCOTT.QUA_ST_18
+    quarterTransferTable: SCOTT.QUA_TS_18
+  theDynamic:
+    oneSectionTable: SCOTT.DN_ONE_SC_18
+    oneStationTable: SCOTT.DN_ONE_ST_18
+    oneTransferTable: SCOTT.DN_ONE_TS_18
+    halfSectionTable: SCOTT.DN_HALF_SC_18
+    halfStationTable: SCOTT.DN_HALF_ST_18
+    halfTransferTable: SCOTT.DN_HALF_TS_18
+    quarterSectionTable: SCOTT.DN_QUA_SC_18
+    quarterStationTable: SCOTT.DN_QUA_ST_18
+    quarterTransferTable: SCOTT.DN_QUA_TS_18
+theGet: shujuku6
+#配置日志
+logging:
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+  file:
+    path: E:\ideagit\pfdistribution\log
+thread:
+  corePoolSize: 3
+  maxPoolSize: 4
+  queueCapacity: 999999
+  threadNamePrefix:
+    name1: 计算线程-
+    name2: 调度线程-
+---
+spring:
+  aop:
+    proxy-target-class: true
+  #  kafka:
+  ##    bootstrap-servers: 590b0a4e.nat123.cc:32818
+  #    bootstrap-servers: 10.2.132.41:9092 # 指定kafka 代理地址，可以多个
+  #    producer:
+  #      retries: 0
+  #      buffer-memory: 33554432  # 每次批量发送消息的数量
+  #      batch_size: 16384
+  #      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 指定消息key和消息体的编解码方式
+  #      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #    consumer:
+  #      auto-offset-reset: earliest
+  #      enable-auto-commit: true
+  #      auto-commit-interval: PT15M # PT1M表示1分钟
+  #      group-id: test-consumer-group # 指定默认消费者group id
+  #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  datasource:
+    #    mysql:
+    #      jdbc-url: jdbc:mysql://47.107.38.55:32768/dbgirl?useUnicode=true&characterEncoding=utf8
+    #      username: root
+    #      password: 123456
+    #      driver-class-name: com.mysql.jdbc.Driver
+    #
+    oracle:
+      jdbc_url: jdbc:oracle:thin:@localhost:1521:ORCL
+      username: system
+      password: system
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    hive:
+      jdbc_url: jdbc:hive2://192.168.81.128:10000/test
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+      username: root
+      password: 960064
+    commonConfig:
+      initialSize: 3
+      minIdle: 5
+      maxIdle: 10
+      maxActive: 50
+      maxWait: 100000
+      timeBetweenEvictionRunsMillis: 100000
+      minEvictableIdleTimeMillis: 50000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      filters: stat
+  profiles: original
+url:
+  distribution: http://localhost:12123/command
+netRouter:
+  ip1: 10.2.55.48
+  ip2: 10.2.55.48
+  port1: 49281
+  port2: 32274
+#配置分配后数据表名字
+table:
+  theStatic:
+    oneSectionTable: SCOTT.ONE_SC_18
+    oneStationTable: SCOTT.ONE_ST_18
+    oneTransferTable: SCOTT.ONE_TS_18
+    halfSectionTable: SCOTT.HALF_SC_18
+    halfStationTable: SCOTT.HALF_ST_18
+    halfTransferTable: SCOTT.HALF_TS_18
+    quarterSectionTable: SCOTT.QUA_SC_18
+    quarterStationTable: SCOTT.QUA_ST_18
+    quarterTransferTable: SCOTT.QUA_TS_18
+  theDynamic:
+    oneSectionTable: SCOTT.DN_ONE_SC_18
+    oneStationTable: SCOTT.DN_ONE_ST_18
+    oneTransferTable: SCOTT.DN_ONE_TS_18
+    halfSectionTable: SCOTT.DN_HALF_SC_18
+    halfStationTable: SCOTT.DN_HALF_ST_18
+    halfTransferTable: SCOTT.DN_HALF_TS_18
+    quarterSectionTable: SCOTT.DN_QUA_SC_18
+    quarterStationTable: SCOTT.DN_QUA_ST_18
+    quarterTransferTable: SCOTT.DN_QUA_TS_18
+theGet: shujuku6
+server:
+  port: 12123
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://47.107.38.55:32768/dbgirl
+#    username: root
+#    password: 123456
+#Web启动端口
+
+#配置日志
+logging:
+
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+  file:
+    path: E:\ideagit\pfdistribution\log
+thread:
+  corePoolSize: 3
+  maxPoolSize: 4
+  queueCapacity: 999999
+  threadNamePrefix:
+    name1: 计算线程-
+    name2: 调度线程-
+---
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    oracle:
+      jdbc_url: jdbc:oracle:thin:@10.11.22.1:1521:ORCL
+      username: system
+      password: 960064
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    hive:
+      jdbc_url: jdbc:hive2://10.2.55.99:10000/test
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+      username: root
+      password:
+    commonConfig:
+      initialSize: 3
+      minIdle: 5
+      maxIdle: 10
+      maxActive: 50
+      maxWait: 100000
+      timeBetweenEvictionRunsMillis: 100000
+      minEvictableIdleTimeMillis: 50000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      filters: stat
+  profiles: dev2
+server:
+  port: 12123
+url:
+  distribution: http://localhost:12123/command
+netRouter:
+  ip1: 10.2.55.48
+  ip2: 10.2.55.48
+  port1: 49281
+  port2: 32274
+#配置分配后数据表名字
+table:
+  theStatic:
+    oneSectionTable: SCOTT.ONE_SC_18
+    oneStationTable: SCOTT.ONE_ST_18
+    oneTransferTable: SCOTT.ONE_TS_18
+    halfSectionTable: SCOTT.HALF_SC_18
+    halfStationTable: SCOTT.HALF_ST_18
+    halfTransferTable: SCOTT.HALF_TS_18
+    quarterSectionTable: SCOTT.QUA_SC_18
+    quarterStationTable: SCOTT.QUA_ST_18
+    quarterTransferTable: SCOTT.QUA_TS_18
+  theDynamic:
+    oneSectionTable: SCOTT.DN_ONE_SC_18
+    oneStationTable: SCOTT.DN_ONE_ST_18
+    oneTransferTable: SCOTT.DN_ONE_TS_18
+    halfSectionTable: SCOTT.DN_HALF_SC_18
+    halfStationTable: SCOTT.DN_HALF_ST_18
+    halfTransferTable: SCOTT.DN_HALF_TS_18
+    quarterSectionTable: SCOTT.DN_QUA_SC_18
+    quarterStationTable: SCOTT.DN_QUA_ST_18
+    quarterTransferTable: SCOTT.DN_QUA_TS_18
+theGet: shujuku6
+#配置日志
+logging:
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+  file:
+    path: E:\ideagit\pfdistribution\log
+thread:
+  corePoolSize: 3
+  maxPoolSize: 4
+  queueCapacity: 999999
+  threadNamePrefix:
+    name1: 计算线程-
+    name2: 调度线程-

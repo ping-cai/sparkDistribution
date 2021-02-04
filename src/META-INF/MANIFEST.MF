@@ -1,0 +1,115 @@
+Manifest-Version: 1.0
+Class-Path: jersey-servlet-1.19.jar xbean-asm6-shaded-4.8.jar hive-shi
+ ms-common-3.1.2.jar jackson-core-2.9.8.jar json-1.8.jar jersey-core-1
+ .19.jar hadoop-mapreduce-client-core-2.6.5.jar jersey-json-1.19.jar h
+ ive-shims-3.1.2.jar curator-framework-2.12.0.jar chill-java-0.9.3.jar
+  hadoop-mapreduce-client-shuffle-2.6.5.jar commons-pool-1.6.jar hbase
+ -shaded-miscellaneous-1.0.1.jar joni-2.1.11.jar hppc-0.7.2.jar slf4j-
+ api-1.7.26.jar hbase-protocol-2.0.0-alpha4.jar oro-2.0.8.jar hbase-sh
+ aded-protobuf-1.0.1.jar jackson-annotations-2.9.0.jar tephra-core-0.6
+ .0.jar log4j-1.2.17.jar xz-1.5.jar spring-messaging-5.1.6.RELEASE.jar
+  unused-1.0.0.jar spring-retry-1.2.4.RELEASE.jar jcl-over-slf4j-1.7.2
+ 6.jar metrics-core-4.0.5.jar jetty-http-9.4.15.v20190215.jar jetty-ut
+ il-9.4.15.v20190215.jar xercesImpl-2.9.1.jar spring-jcl-5.1.6.RELEASE
+ .jar avro-ipc-1.8.2.jar jetty-rewrite-9.4.15.v20190215.jar hbase-comm
+ on-2.0.0-alpha4-tests.jar lz4-java-1.4.0.jar spring-boot-starter-jdbc
+ -2.1.4.RELEASE.jar NetRouterJavaClient.jar ojdbc6-11.2.0.3.jar common
+ s-crypto-1.0.0.jar chill_2.12-0.9.3.jar twill-common-0.6.0-incubating
+ .jar druid-1.1.10.jar jackson-datatype-jsr310-2.9.8.jar curator-recip
+ es-2.6.0.jar curator-client-2.12.0.jar jsr311-api-1.1.1.jar twill-dis
+ covery-core-0.6.0-incubating.jar amqp-client-5.4.3.jar bonecp-0.8.0.R
+ ELEASE.jar hive-upgrade-acid-3.1.2.jar jersey-client-1.19.jar javax.s
+ ervlet.jsp-api-2.3.1.jar jackson-module-paranamer-2.9.8.jar guice-ass
+ istedinject-3.0.jar zstd-jni-1.3.2-2.jar jersey-media-jaxb-2.27.jar s
+ park-network-shuffle_2.12-2.4.2.jar protobuf-java-2.5.0.jar commons-n
+ et-3.1.jar fastutil-6.5.6.jar httpcore-4.4.11.jar hadoop-yarn-server-
+ common-2.6.5.jar spring-expression-5.1.6.RELEASE.jar joda-time-2.10.1
+ .jar guice-servlet-4.0.jar hbase-shaded-netty-1.0.1.jar paranamer-2.8
+ .jar commons-digester-1.8.jar hive-serde-3.1.2.jar libthrift-0.9.3.ja
+ r hadoop-yarn-client-2.6.5.jar xml-apis-1.4.01.jar sqlline-1.3.0.jar 
+ spring-webmvc-5.1.6.RELEASE.jar log4j-web-2.11.2.jar lombok-1.18.6.ja
+ r hbase-metrics-api-2.0.0-alpha4.jar hbase-http-2.0.0-alpha4.jar jack
+ son-module-scala_2.12-2.9.8.jar jetty-util-ajax-9.4.15.v20190215.jar 
+ hbase-replication-2.0.0-alpha4.jar datanucleus-core-4.1.17.jar jackso
+ n-module-parameter-names-2.9.8.jar hive-shims-scheduler-3.1.2.jar kaf
+ ka-clients-2.0.1.jar logback-core-1.2.3.jar mysql-connector-java-5.1.
+ 6.jar hibernate-validator-6.0.16.Final.jar hive-service-3.1.2.jar Hik
+ ariCP-3.2.0.jar commons-collections-3.2.2.jar metrics-jvm-4.0.5.jar s
+ nakeyaml-1.23.jar jetty-servlet-9.4.15.v20190215.jar hadoop-yarn-serv
+ er-resourcemanager-3.1.0.jar hadoop-mapreduce-client-jobclient-2.6.5.
+ jar hadoop-yarn-common-2.6.5.jar hive-llap-tez-3.1.2.jar apacheds-i18
+ n-2.0.0-M15.jar jaxb-api-2.3.1.jar netty-common-4.1.34.Final.jar spar
+ k-launcher_2.12-2.4.2.jar hive-storage-api-2.7.0.jar leveldbjni-all-1
+ .8.jar stream-2.7.0.jar ant-1.9.1.jar hbase-prefix-tree-2.0.0-alpha4.
+ jar ant-launcher-1.9.1.jar spark-network-common_2.12-2.4.2.jar guice-
+ 3.0.jar commons-beanutils-1.7.0.jar libfb303-0.9.3.jar tephra-api-0.6
+ .0.jar minlog-1.3.0.jar hive-common-3.1.2.jar hbase-metrics-2.0.0-alp
+ ha4.jar hive-llap-client-3.1.2.jar api-asn1-api-1.0.0-M20.jar hive-ll
+ ap-common-3.1.2-tests.jar jersey-container-servlet-core-2.27.jar spri
+ ng-boot-autoconfigure-2.1.4.RELEASE.jar py4j-0.10.7.jar jetty-xml-9.4
+ .15.v20190215.jar jpam-1.1.jar netty-3.9.9.Final.jar hadoop-hdfs-2.6.
+ 5.jar commons-compress-1.8.1.jar classmate-1.4.0.jar findbugs-annotat
+ ions-1.3.9-1.jar spring-tx-5.1.6.RELEASE.jar spark-unsafe_2.12-2.4.2.
+ jar spring-core-5.1.6.RELEASE.jar jboss-logging-3.3.2.Final.jar jerse
+ y-guice-1.19.jar metrics-graphite-4.0.5.jar commons-math3-3.4.1.jar d
+ ropwizard-metrics-hadoop-metrics2-reporter-0.1.2.jar scala-xml_2.12-1
+ .0.6.jar hbase-server-2.0.0-alpha4.jar gson-2.8.5.jar commons-collect
+ ions4-4.1.jar ivy-2.4.0.jar spark-tags_2.12-2.4.2.jar javax.el-3.0.0.
+ jar antlr-runtime-3.5.2.jar spring-boot-starter-web-2.1.4.RELEASE.jar
+  javax.servlet.jsp-2.3.2.jar validation-api-2.0.1.Final.jar arrow-vec
+ tor-0.8.0.jar jul-to-slf4j-1.7.26.jar spring-context-5.1.6.RELEASE.ja
+ r commons-lang-2.6.jar orc-shims-1.5.6.jar jackson-datatype-jdk8-2.9.
+ 8.jar shims-0.7.45.jar jersey-container-servlet-2.27.jar audience-ann
+ otations-0.5.0.jar twill-zookeeper-0.6.0-incubating.jar spring-boot-c
+ onfiguration-processor-2.1.4.RELEASE.jar opencsv-2.3.jar json4s-scala
+ p_2.12-3.5.3.jar metrics-json-4.0.5.jar jdo-api-3.0.1.jar api-util-1.
+ 0.0-M20.jar jersey-common-2.27.jar jcodings-1.0.18.jar spring-boot-te
+ st-2.1.4.RELEASE.jar hadoop-auth-2.6.5.jar hbase-common-2.0.0-alpha4.
+ jar arrow-format-0.8.0.jar aircompressor-0.10.jar commons-httpclient-
+ 3.1.jar netty-buffer-4.1.34.Final.jar hive-jdbc-3.1.2.jar transaction
+ -api-1.1.jar spring-boot-starter-logging-2.1.4.RELEASE.jar hbase-proc
+ edure-2.0.0-alpha4.jar jersey-server-1.19.jar activation-1.1.1.jar py
+ rolite-4.13.jar hadoop-annotations-2.6.5.jar commons-configuration-1.
+ 6.jar hadoop-mapreduce-client-app-2.6.5.jar hive-service-rpc-3.1.2.ja
+ r jetty-webapp-9.4.15.v20190215.jar snappy-java-1.1.7.3.jar spring-bo
+ ot-2.1.4.RELEASE.jar hbase-hadoop-compat-2.0.0-alpha4.jar hadoop-mapr
+ educe-client-common-2.6.5.jar hadoop-client-2.6.5.jar apacheds-kerber
+ os-codec-2.0.0-M15.jar jackson-mapper-asl-1.9.13.jar datanucleus-rdbm
+ s-4.1.19.jar spark-kvstore_2.12-2.4.2.jar spring-boot-starter-tomcat-
+ 2.1.4.RELEASE.jar log4j-1.2-api-2.11.2.jar hadoop-yarn-server-applica
+ tionhistoryservice-3.1.0.jar xmlenc-0.52.jar tephra-hbase-compat-1.0-
+ 0.6.0.jar datanucleus-api-jdo-4.2.4.jar javolution-5.5.1.jar json4s-a
+ st_2.12-3.5.3.jar spring-beans-5.1.6.RELEASE.jar osgi-resource-locato
+ r-1.0.1.jar derby-10.14.2.0.jar twill-core-0.6.0-incubating.jar sprin
+ g-jdbc-5.1.6.RELEASE.jar twill-api-0.6.0-incubating.jar hbase-hadoop2
+ -compat-2.0.0-alpha4.jar guava-16.0.1.jar logback-classic-1.2.3.jar h
+ trace-core-3.0.4.jar hbase-mapreduce-2.0.0-alpha4.jar jersey-server-2
+ .27.jar commons-codec-1.11.jar json4s-core_2.12-3.5.3.jar hive-standa
+ lone-metastore-3.1.2.jar hadoop-distcp-2.7.1.jar hbase-client-2.0.0-a
+ lpha4.jar javax.ws.rs-api-2.1.jar commons-lang3-3.8.1.jar javax.jdo-3
+ .2.0-m3.jar javax.activation-api-1.2.0.jar jettison-1.1.jar hive-shim
+ s-0.23-3.1.2.jar compress-lzf-1.0.3.jar fst-2.50.jar kryo-shaded-4.0.
+ 2.jar scala-library-2.12.8.jar javax.inject-1.jar objenesis-2.6.jar j
+ ackson-core-asl-1.9.13.jar httpclient-4.5.8.jar zookeeper-3.4.6.jar s
+ park-core_2.12-2.4.2.jar spring-boot-starter-2.1.4.RELEASE.jar hive-c
+ lassification-3.1.2.jar hive-llap-server-3.1.2.jar log4j-core-2.11.2.
+ jar hive-metastore-3.1.2.jar json-io-2.5.1.jar javax.inject-2.5.0-b42
+ .jar hadoop-yarn-api-2.6.5.jar jackson-xc-1.9.13.jar arrow-memory-0.8
+ .0.jar hive-llap-common-3.1.2.jar htrace-core-3.2.0-incubating.jar ja
+ ckson-jaxrs-1.9.13.jar orc-core-1.5.6.jar parquet-hadoop-bundle-1.10.
+ 0.jar jamon-runtime-2.3.1.jar avro-1.8.2.jar netty-all-4.1.34.Final.j
+ ar commons-dbcp-1.4.jar hadoop-yarn-server-web-proxy-3.1.0.jar avro-m
+ apred-1.8.2-hadoop2.jar commons-io-2.4.jar log4j-to-slf4j-2.11.2.jar 
+ log4j-api-2.11.2.jar commons-beanutils-core-1.8.0.jar jersey-client-2
+ .27.jar aopalliance-1.0.jar hbase-protocol-shaded-2.0.0-alpha4.jar js
+ r305-1.3.9.jar json4s-jackson_2.12-3.5.3.jar disruptor-3.3.6.jar spri
+ ng-boot-starter-json-2.1.4.RELEASE.jar jaxb-impl-2.2.3-1.jar jetty-io
+ -9.4.15.v20190215.jar hadoop-common-2.6.5.jar javax.servlet-api-4.0.1
+ .jar jta-1.1.jar spring-kafka-2.2.5.RELEASE.jar jetty-security-9.4.15
+ .v20190215.jar javax.annotation-api-1.3.2.jar jackson-databind-2.9.8.
+ jar spring-web-5.1.6.RELEASE.jar RoaringBitmap-0.7.45.jar flatbuffers
+ -1.2.0-3f79e055.jar java-util-1.9.0.jar commons-logging-1.0.4.jar jet
+ ty-server-9.4.18.v20190429.jar commons-cli-1.2.jar spring-aop-5.1.6.R
+ ELEASE.jar jline-2.12.jar twill-discovery-api-0.6.0-incubating.jar
+Main-Class: cn.edu.sicau.pfdistribution.PfAllocationApp
+

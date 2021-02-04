@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>地铁站的管理员应用</title>
+    <link href="css/root.css" rel="stylesheet">
+</head>
+<body>
+<script>
+    function stationNameSubmit() {
+        var id = document.getElementById("input1").value;
+        var stationName = document.getElementById("input2").value;
+        $.ajax({
+            type: "POST",
+            url: "/modularSWJTU/queryByStation.do",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                id,
+                stationName
+            }),
+            success: function (result) {
+                var json;
+                json = JSON.stringify(result, null, 4);
+                console.log(json);
+                $("#stationNameData").html('<pre style="background-color:#ed7d31;color: indigo">' + json + '</pre>');
+            }, error: function (result) {
+                alert("传入参数错误！")
+            }
+        })
+    }
+</script>
+<div id="top" class="clearfix">
+
+    <div class="applogo">
+        <a href="index.html" class="logo">地铁站应用</a>
+    </div>
+    <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+    <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+
+    <ul class="top-right">
+        <li class="dropdown link">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="img/profileimg.png"
+                                                                                       alt="img">管理员<span
+                    class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+                <li role="presentation" class="dropdown-header">操作</li>
+                <li><a href="#"><i class="fa falist fa-power-off"></i> 退出</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="sidebar clearfix">
+
+    <ul class="sidebar-panel nav">
+        <li class="left-menu"><a href="index.html"><span class="icon color5"><i class="fa fa-gear"></i></span><span
+                class="txt">参数设置</span></a></li>
+        <li class="left-menu"><a href="road.html"><span class="icon color7"><i class="fa fa-dashboard"></i></span><span
+                class="txt">查询线路信息</span></a></li>
+        <li class="left-menu"><a href="tripPlan.html"><span class="icon color7"><i
+                class="fa fa-dashboard"></i></span><span
+                class="txt">出行规划</span></a></li>
+        <li class="left-menu"><a href="check.html"><span class="icon color8"><i class="fa fa-check"></i></span><span
+                class="txt">检查接口</span></a></li>
+        <li class="left-menu"><a href="crowd.html"><span class="icon color8"><i class="fa fa-check"></i></span><span
+                class="txt">拥挤度查询</span></a></li>
+        <li class="left-menu"><a href="command.html"><span class="icon color8"><i class="fa fa-check"></i></span><span
+                class="txt">命令选项</span></a></li>
+    </ul>
+</div><!-- END SIDEBAR -->
+<div class="content">
+
+    <div class="panel-body">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="input1" placeholder="车站ID 可为空">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="input2" placeholder="车站站名 必填">
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="stationInput" onclick="stationNameSubmit()">提交</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="panel-body">
+        <div id="map" style="height: 600px; background-color: #ed7d31;" class="col-sm-12">
+            <div id="stationNameData"></div>
+        </div>
+    </div>
+
+    <div class="row footer" style="margin-top: 3.8%;">
+        <div class="col-md-6 text-left">
+            Copyright © 2019 All rights reserved.
+        </div>
+        <div class="col-md-6 text-right">
+            Design and Developed by ZLZ
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="js/bootstrap-select/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script type="text/javascript" src="js/boot-ajax/road-ajax.js"></script>
+</body>
+</html>

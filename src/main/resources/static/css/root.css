@@ -1,0 +1,23 @@
+@import url('font-awesome.min.css');
+@import url('bootstrap.css');
+@import url('style.css');
+@import url('responsive.css');
+@import url('shortcuts.css');
+* {
+    font-family: 黑体;
+}
+.txt{
+    font-size: 25px;
+}
+.left-menu {
+    margin-top: 40px;
+}
+
+
+#text {
+    display: block;
+    font-family: Consolas;
+    position: relative;
+    margin-top: 5%;
+    line-height: 40px;
+}

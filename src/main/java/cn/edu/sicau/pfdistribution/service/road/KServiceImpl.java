@@ -370,7 +370,6 @@ public class KServiceImpl implements KService, Serializable {
     }
 
     private List<DirectedPath> convertPathToDirectedIdPathTest(List<Section> sections, List<Path> paths) {
-        Map<String, String> lineMap = DataBaseLoading.stationLine;
         List<DirectedPath> directedPaths = new ArrayList<>();
         for (Path path : paths) {
             List<Edge> pathEdges = path.getEdges();

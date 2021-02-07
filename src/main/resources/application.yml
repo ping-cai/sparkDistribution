@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: dev
 ---
 spring:
   aop:
@@ -9,8 +9,8 @@ spring:
     oracle:
       type: com.zaxxer.hikari.HikariDataSource
       jdbc_url: jdbc:oracle:thin:@localhost:1521:ORCL
-      username: system
-      password: 960064
+      username: scott
+      password: tiger
       driver-class-name: oracle.jdbc.driver.OracleDriver
     hive:
       type: com.alibaba.druid.pool.DruidDataSource

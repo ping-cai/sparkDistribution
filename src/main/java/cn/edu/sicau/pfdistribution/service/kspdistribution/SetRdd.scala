@@ -10,6 +10,7 @@ import cn.edu.sicau.pfdistribution.dao.tonghaoSave.{HalfSavePassengerFlow, OneSa
 import cn.edu.sicau.pfdistribution.entity._
 import cn.edu.sicau.pfdistribution.entity.jiaoda._
 import cn.edu.sicau.pfdistribution.exceptionhandle.CheckService
+import cn.edu.sicau.pfdistribution.service.jiaodaTest.MathModelImpl
 import cn.edu.sicau.pfdistribution.service.kspcalculation.{Edge, Graph, KSPUtil, Node}
 import cn.edu.sicau.pfdistribution.service.road.{KServiceImpl, PathCheckServiceImpl}
 import org.apache.spark.{SparkConf, SparkContext}
@@ -31,7 +32,8 @@ object SetRdd {
     classOf[CommonMethod], classOf[KServiceImpl], classOf[PathCheckServiceImpl],
     classOf[MysqlGetID], classOf[RoadDistributionDaoImpl], classOf[GetPassengerFlowOracle],
     classOf[HalfSavePassengerFlow], classOf[OneSavePassengerFlow], classOf[QuarterSaveEspecially],
-    classOf[Edge], classOf[Graph], classOf[KSPUtil], classOf[Node], classOf[CheckService]))
+    classOf[Edge], classOf[Graph], classOf[KSPUtil], classOf[Node], classOf[CheckService],
+    classOf[MathModelImpl]))
   val sc = new SparkContext(conf)
   sc.setLogLevel("WARN")
 

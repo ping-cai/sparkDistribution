@@ -2,7 +2,7 @@ package cn.edu.sicau.pfdistribution.service
 
 import cn.edu.sicau.pfdistribution.entity.DirectedEdge
 import cn.edu.sicau.pfdistribution.entity.jiaoda.GetQuarterPassengerFlow
-import cn.edu.sicau.pfdistribution.entity.jiaodaTest.OdWithPath
+import cn.edu.sicau.pfdistribution.entity.jiaodaTest.{OdWithPath, OdWithTimeAndPath}
 
 import scala.collection.mutable
 
@@ -13,4 +13,5 @@ trait BetterCalculate {
 
   def dynamicOdPathSearch(targetOd: String): OdWithPath
 
+  def dynamicOdDistributionResult(targetOd: String, odMap: mutable.Map[String, Integer]): mutable.Map[Array[DirectedEdge], Double]
 }

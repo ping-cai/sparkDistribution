@@ -5,6 +5,7 @@ import cn.edu.sicau.pfdistribution.entity.LineIdAndSectionTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 @Service
 
-public class GetLineID implements Serializable{
+public class GetLineID implements Serializable {
     transient
     @Autowired
     private MysqlGetID GetID;
@@ -22,9 +23,10 @@ public class GetLineID implements Serializable{
     @Autowired
     private LineIdAndSectionTime stationIdToLineId;
 
-    public void setStationId(){
-        Map<Integer,Integer> idToLine=GetID.carID();
-        Map<Integer, List<String>> sectionTime=GetID.idTime();
+    @PostConstruct
+    public void setStationId() {
+        Map<Integer, Integer> idToLine = GetID.carID();
+        Map<Integer, List<String>> sectionTime = GetID.idTime();
         stationIdToLineId.setStationIdToLineId(idToLine);
         stationIdToLineId.setSectionTime(sectionTime);
     }

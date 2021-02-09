@@ -1,7 +1,5 @@
 package cn.edu.sicau.pfdistribution.service.jiaodaTest
 
-import java.util
-
 import cn.edu.sicau.pfdistribution.entity.jiaoda.GetQuarterPassengerFlow
 import cn.edu.sicau.pfdistribution.entity.jiaodaTest.OdWithPath
 import cn.edu.sicau.pfdistribution.entity.{DirectedEdge, DirectedPath, Risk}
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
-import scala.collection.mutable.Map
+
 
 /**
   * @Author LiYongPing
@@ -22,7 +20,7 @@ import scala.collection.mutable.Map
   * @LastUpdate 2021-02-02
   */
 @Service
-class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBaseImplementation: CalculateBaseImplementation, risk: Risk, dynamicCosting: KspDynamicCosting) extends BetterCalculate with Serializable {
+class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBaseImplementation: CalculateBaseImplementation, risk: Risk, dynamicCosting: KspDynamicCosting, mathModelImpl: MathModelImpl) extends BetterCalculate with Serializable {
   private[this] val logger = LoggerFactory.getLogger(this.getClass)
 
   override def odQuarterDistributionResult(getQuarterPassengerFlow: GetQuarterPassengerFlow): (String, String, mutable.Map[Array[DirectedEdge], Double], Int) = {
@@ -30,10 +28,6 @@ class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBase
     val OD = mutable.Map(targetOd -> targetOd)
     val ksp1 = kServiceImpl.computeStatic(OD.asJava, "PARAM_NAME", "RETURN_ID")
     val ksp = ksp1.get(targetOd)
-    if (ksp == null) {
-      logger.warn("错误OD{}", targetOd)
-      return null
-    }
     val passengers = getQuarterPassengerFlow.getPassengers.toInt
     val it = ksp.iterator()
     var text: mutable.Map[Iterator[DirectedEdge], Double] = mutable.Map()
@@ -64,26 +58,11 @@ class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBase
     val OD = mutable.Map(targetOd -> targetOd)
     val ksp1 = kServiceImpl.computeDynamic(OD.asJava, "PARAM_NAME", "RETURN_ID", risk)
     val ksp = ksp1.get(targetOd)
-    if (ksp == null) {
-      logger.warn("错误OD{}", targetOd)
-      return null
-    }
-    val passengers = getQuarterPassengerFlow.getPassengers.toInt
-    val it = ksp.iterator()
-    var text: mutable.Map[Iterator[DirectedEdge], Double] = mutable.Map()
-    var pathArray: mutable.Map[Array[DirectedEdge], Double] = mutable.Map()
-    while (it.hasNext) {
-      val p = it.next()
-      //      一条路径的站点构成
-      val nodesIt = p.getEdges.iterator()
-      text += (nodesIt.asScala -> p.getTotalCost) //静态费用
-    }
-    for (key <- text.keys) {
-      val myArray = key.toArray
-      pathArray += (myArray -> text.apply(key))
-    }
-    val edgesToDouble = calculateBaseImplementation.kspDistribution(dynamicCosting.costCount(pathArray), passengers)
-    Tuple4(getQuarterPassengerFlow.getInTime, getQuarterPassengerFlow.getOutTime, edgesToDouble, getQuarterPassengerFlow.getMinutes)
+    val minutes = getQuarterPassengerFlow.getMinutes
+    val edgesAndTimeCost = mathModelImpl.distanceCostTime(ksp, minutes.toDouble)
+    val passengers = getQuarterPassengerFlow.getPassengers
+    val edgesByLogic = mathModelImpl.kspDistribution(edgesAndTimeCost, passengers)
+    Tuple4(getQuarterPassengerFlow.getInTime, getQuarterPassengerFlow.getOutTime, edgesByLogic, minutes)
   }
 
   override def dynamicOdPathSearch(targetOd: String): OdWithPath = {
@@ -94,5 +73,9 @@ class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBase
     val origin = od(0)
     val destination = od(1)
     new OdWithPath(origin, destination, ksp)
+  }
+
+  override def dynamicOdDistributionResult(targetOd: String, odMap: mutable.Map[String, Integer]): mutable.Map[Array[DirectedEdge], Double] = {
+    null
   }
 }

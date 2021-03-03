@@ -45,6 +45,32 @@ public class DateExtendUtil {
     }
 
     /**
+     * @param myDate        传入待划分时间间隔的时间
+     * @param referenceTime 参照时间，这个时间通常为待划分时间的凌晨零点时间
+     * @param interval      时间间隔，15分钟，30分钟，60分钟等
+     * @return 返回时间段字符串
+     * @Date 2021-03-02
+     */
+    public static String dateToInterval(Date myDate, Date referenceTime, int interval) {
+        int dateDiff = dateDiff(referenceTime, myDate, MINUTE);
+        int intervalNumbers = dateDiff / interval;
+        int spaceTime = intervalNumbers * interval;
+        Date date = dateAddition(referenceTime, 0, spaceTime);
+        return dateToString(date);
+    }
+
+    public static String timeToDatetime(String time, String referenceDatetime) {
+        String[] timeArray = time.split(".");
+        String hours = timeArray[0];
+        String minutes = timeArray[1];
+        String referenceDate = referenceDatetime.split(" ")[0];
+        Date date = stringToDate(referenceDate, PART);
+        Date finalDatetime = dateAddition(date, Integer.parseInt(hours), Integer.parseInt(minutes));
+        return dateToString(finalDatetime);
+    }
+
+
+    /**
      * @param strDate 非标准日期字符串时间，类似2018/1/2,或者2018/01/02
      * @return 标准日期格式时间，2018-01-02 00:00:00
      */

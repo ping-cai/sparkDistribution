@@ -1,5 +1,6 @@
 package cn.edu.sicau.pfdistribution.dao;
 
+import cn.edu.sicau.pfdistribution.entity.Command;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.RequestCommand;
 import java.util.List;
 
@@ -41,6 +42,6 @@ public interface BatchSaveInter {
             "?,\n" +
             "?)";
 
-    <T> void saveData(String sql,RequestCommand requestCommand, List<T> passengersList);
-    <T> void saveTimeSliceData(String sql, RequestCommand requestCommand, List<T> passengersList);
+    <T> void saveData(String sql, Command requestCommand, List<T> passengersList);
+    <T> void saveTimeSliceData(String sql, Command requestCommand, List<T> passengersList);
 }

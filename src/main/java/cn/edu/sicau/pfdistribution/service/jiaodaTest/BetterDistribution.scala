@@ -5,7 +5,7 @@ import java.util.Date
 
 import cn.edu.sicau.pfdistribution.Utils.TimeSlice
 import cn.edu.sicau.pfdistribution.dao.tonghaoGet.GetPassengerFlowHive
-import cn.edu.sicau.pfdistribution.entity.DirectedEdge
+import cn.edu.sicau.pfdistribution.entity.{Command, DirectedEdge}
 import cn.edu.sicau.pfdistribution.entity.jiaoda._
 import cn.edu.sicau.pfdistribution.exceptionhandle.CheckService
 import cn.edu.sicau.pfdistribution.service.kspdistribution.{CalculateBaseInterface, GetLineID, MainTransfer, SetRdd}
@@ -127,7 +127,7 @@ class BetterDistribution @Autowired()(calBase: CalculateBaseInterface, getLineID
     * @param targetTable :目标生成和插入的表
     * @param odList      ：GetQuarterPassengerFlow集合，最先取出的数据集合
     */
-  def lastAllSectionResult(targetTable: String, odList: java.util.List[GetQuarterPassengerFlow], requestCommand: RequestCommand): Unit = {
+  def lastAllSectionResult(targetTable: String, odList: java.util.List[GetQuarterPassengerFlow], requestCommand: Command): Unit = {
     val dateDt = requestCommand.getDateDt
     val list: RDD[(String, String, mutable.Map[Array[DirectedEdge], Double], Int)] = odListToArrayDirectedEdge(requestCommand, odList)
     val sectionSaves: RDD[QuarterSectionSave] = quarterSectionReturn(list)
@@ -151,7 +151,7 @@ class BetterDistribution @Autowired()(calBase: CalculateBaseInterface, getLineID
     * @param odList         GetQuarterPassengerFlow,数据库原始数据List
     * @return
     */
-  def odListToArrayDirectedEdge(requestCommand: RequestCommand, odList: java.util.List[GetQuarterPassengerFlow]): RDD[(String, String, mutable.Map[Array[DirectedEdge], Double], Int)] = {
+  def odListToArrayDirectedEdge(requestCommand: Command, odList: java.util.List[GetQuarterPassengerFlow]): RDD[(String, String, mutable.Map[Array[DirectedEdge], Double], Int)] = {
     if (requestCommand.getCommand == "static") {
       quarterIntervalResult(odList)
     } else {

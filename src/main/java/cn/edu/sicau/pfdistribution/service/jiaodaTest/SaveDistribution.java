@@ -4,6 +4,7 @@ import cn.edu.sicau.pfdistribution.dao.BatchSaveInter;
 import cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest.SectionDataSaveImpl;
 import cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest.StationDataSaveImpl;
 import cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest.TransferDataSaveImpl;
+import cn.edu.sicau.pfdistribution.entity.Command;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,21 +46,21 @@ public class SaveDistribution implements Serializable {
         stationDataSave.saveData(sql, requestCommand, transferPassengersList);
     }
 
-    public void saveTimeSliceSection(String targetTable, RequestCommand requestCommand, List<StoreSectionPassengers> sectionTimeSlice) {
+    public void saveTimeSliceSection(String targetTable, Command requestCommand, List<StoreSectionPassengers> sectionTimeSlice) {
         String format = "%s_section";
         String sectionTable = String.format(format, targetTable);
         String sql = String.format(BatchSaveInter.SECTION_SQL, sectionTable);
         sectionDataSave.saveTimeSliceData(sql, requestCommand, sectionTimeSlice);
     }
 
-    public void saveTimeSliceStation(String targetTable, RequestCommand requestCommand, List<StationInOutSave> stationInOutSaveList) {
+    public void saveTimeSliceStation(String targetTable, Command requestCommand, List<StationInOutSave> stationInOutSaveList) {
         String format = "%s_station";
         String stationTable = String.format(format, targetTable);
         String sql = String.format(BatchSaveInter.STATION_SQL, stationTable);
         stationDataSave.saveTimeSliceData(sql, requestCommand, stationInOutSaveList);
     }
 
-    public void saveTimeSliceTransfer(String targetTable, RequestCommand requestCommand, List<StoreTransferData> transferDataList) {
+    public void saveTimeSliceTransfer(String targetTable, Command requestCommand, List<StoreTransferData> transferDataList) {
         String format = "%s_transfer";
         String transferTable = String.format(format, targetTable);
         String sql = String.format(BatchSaveInter.TRANSFER_SQL, transferTable);

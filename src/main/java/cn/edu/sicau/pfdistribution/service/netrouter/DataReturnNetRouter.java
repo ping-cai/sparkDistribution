@@ -59,6 +59,8 @@ public class DataReturnNetRouter {
     }
 
 
+
+
     @Async("netRouterExecutor")
     public void receiver() throws Exception {
         String systemType = System.getProperty("os.name");
@@ -67,9 +69,9 @@ public class DataReturnNetRouter {
         } else {
             System.load("//usr/lib/libNetRouterCppClient.so");
         }
-        Address localAddress = new Address((byte) 8, (byte) 2, (short) 2, (byte) 2, (short) 6);
+        Address localAddress = new Address((byte) 8, (byte) 1, (short) 2, (byte) 2, (short) 6);
         List<Address> addresses = new LinkedList<Address>();
-        Address destAddress = new Address((byte) 8, (byte) 1, (short) 2, (byte) 1, (short) 6);
+        Address destAddress = new Address((byte) 8, (byte) 1, (short) 2, (byte) 2, (short) 65535);
         addresses.add(destAddress);
         String ip = (systemType.toLowerCase().contains("win")) ? InetAddress.getLocalHost().getHostAddress() : getLinuxLocalIp();
         NetRouterClient netRouterClient = new NetRouterClient("Test", ip1, port1, ip2, port2, localAddress, "");

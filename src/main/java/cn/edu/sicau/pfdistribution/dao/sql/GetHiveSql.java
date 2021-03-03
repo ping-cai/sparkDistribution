@@ -58,4 +58,6 @@ public class GetHiveSql extends GetDataSql {
                 "where in_time between ? and ? and passengers>0 and target1.od_target<>target2.od_target";
         return String.format(sql, database, tableName);
     }
+
+
 }

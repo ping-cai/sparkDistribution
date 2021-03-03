@@ -70,7 +70,7 @@ object MathModelImpl {
   var conversionWeight = 2.0
 
   def transferFee(): Double = {
-    30
+    24
   }
 
   def judgeTransfer(edge: DirectedEdge): Int = {

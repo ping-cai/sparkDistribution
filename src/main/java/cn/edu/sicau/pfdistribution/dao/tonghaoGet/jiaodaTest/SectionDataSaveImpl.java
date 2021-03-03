@@ -2,6 +2,7 @@ package cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest;
 
 import cn.edu.sicau.pfdistribution.Utils.DataBaseLoading;
 import cn.edu.sicau.pfdistribution.dao.BatchSaveInter;
+import cn.edu.sicau.pfdistribution.entity.Command;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.RequestCommand;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.SectionPassengers;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.StoreSectionPassengers;
@@ -24,7 +25,7 @@ public class SectionDataSaveImpl implements BatchSaveInter, Serializable {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public <T> void saveData(String sql, RequestCommand requestCommand, List<T> passengersList) {
+    public <T> void saveData(String sql, Command requestCommand, List<T> passengersList) {
         Map<String, String> sectionIdMap = DataBaseLoading.sectionIdMap;
         ArrayList<Object[]> arrayList = new ArrayList<>(5000);
         double sum = 0;
@@ -46,11 +47,12 @@ public class SectionDataSaveImpl implements BatchSaveInter, Serializable {
     }
 
     @Override
-    public <T> void saveTimeSliceData(String sql, RequestCommand requestCommand, List<T> passengersList) {
+    public <T> void saveTimeSliceData(String sql, Command requestCommand, List<T> passengersList) {
         ArrayList<Object[]> arrayList = new ArrayList<>();
         for (StoreSectionPassengers sectionPassengers : (List<StoreSectionPassengers>) passengersList) {
+            float passengers = sectionPassengers.getPassengers().floatValue();
             Object[] objects = {sectionPassengers.getDataDT(), sectionPassengers.getSectionId(), sectionPassengers.getInId(), sectionPassengers.getOutId(),
-                    sectionPassengers.getInTime(), sectionPassengers.getOutTime(), sectionPassengers.getPassengers()};
+                    sectionPassengers.getInTime(), sectionPassengers.getOutTime(), passengers};
             arrayList.add(objects);
         }
         try {

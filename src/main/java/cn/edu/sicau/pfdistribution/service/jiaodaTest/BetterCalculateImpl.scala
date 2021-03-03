@@ -49,7 +49,8 @@ class BetterCalculateImpl @Autowired()(kServiceImpl: KServiceImpl, calculateBase
   }
 
   /**
-    *
+    * @author LiYongPing
+    * @Date 2021-02-09
     * @param getQuarterPassengerFlow 从数据库中获取的原始待分配OD数据
     * @return 要进行拆解操作的OD
     */

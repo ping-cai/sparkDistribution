@@ -1,33 +1,33 @@
 package cn.edu.sicau.pfdistribution.dataInteraction;
 
 public class SectionFlowInfo {
-    public int StationStartId; //区间起始车站id
-    public int StationEndId; //区间终止车站id
+    public int stationStartId; //区间起始车站id
+    public int stationEndId; //区间终止车站id
     public int passengers; //区间客流量
 
     public SectionFlowInfo() {
     }
 
     public SectionFlowInfo(int stationStartId, int stationEndId, int passengers) {
-        StationStartId = stationStartId;
-        StationEndId = stationEndId;
+        this.stationStartId = stationStartId;
+        this.stationEndId = stationEndId;
         this.passengers = passengers;
     }
 
     public int getStationStartId() {
-        return StationStartId;
+        return stationStartId;
     }
 
     public void setStationStartId(int stationStartId) {
-        StationStartId = stationStartId;
+        this.stationStartId = stationStartId;
     }
 
     public int getStationEndId() {
-        return StationEndId;
+        return stationEndId;
     }
 
     public void setStationEndId(int stationEndId) {
-        StationEndId = stationEndId;
+        this.stationEndId = stationEndId;
     }
 
     public int getPassengers() {
@@ -41,8 +41,8 @@ public class SectionFlowInfo {
     @Override
     public String toString() {
         return "SectionFlowInfo{" +
-                "StationStartId=" + StationStartId +
-                ", StationEndId=" + StationEndId +
+                "stationStartId=" + stationStartId +
+                ", stationEndId=" + stationEndId +
                 ", passengers=" + passengers +
                 '}';
     }

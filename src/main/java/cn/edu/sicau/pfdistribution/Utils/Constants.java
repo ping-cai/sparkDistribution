@@ -14,7 +14,7 @@ public class Constants {
     public static final String ENVIRONMENT_RISK = "u0001u0001";
     public static final String DEVICE_RISK = "DEVICE_RISK";
     public static final int CHANGE_LENGTH = 0;
-    public static final String STATION_ID = "StationId";
+    public static final String STATION_ID = "stationId";
     public static final String SECTION_ID = "SectionId";
     public static final String ALARM_LEVEL = "AlarmLevel";
     public static final String ALARM_START_TIME = "StartTime";

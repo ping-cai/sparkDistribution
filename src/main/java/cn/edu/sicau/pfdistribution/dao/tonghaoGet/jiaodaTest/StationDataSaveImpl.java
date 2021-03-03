@@ -2,6 +2,7 @@ package cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest;
 
 import cn.edu.sicau.pfdistribution.Utils.CommonMethod;
 import cn.edu.sicau.pfdistribution.dao.BatchSaveInter;
+import cn.edu.sicau.pfdistribution.entity.Command;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.RequestCommand;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.StationInOutSave;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.StationPassengers;
@@ -26,7 +27,7 @@ public class StationDataSaveImpl implements BatchSaveInter, Serializable {
     private CommonMethod commonMethod;
 
     @Override
-    public <T> void saveData(String sql, RequestCommand requestCommand, List<T> passengersList) {
+    public <T> void saveData(String sql, Command requestCommand, List<T> passengersList) {
         ArrayList<Object[]> arrayList = new ArrayList<>(5000);
         HashMap<String, String> stationIdDetermine = commonMethod.stationIdDetermine();
         for (StationPassengers station : (List<StationPassengers>) passengersList) {
@@ -44,7 +45,7 @@ public class StationDataSaveImpl implements BatchSaveInter, Serializable {
     }
 
     @Override
-    public <T> void saveTimeSliceData(String sql, RequestCommand requestCommand, List<T> passengersList) {
+    public <T> void saveTimeSliceData(String sql, Command requestCommand, List<T> passengersList) {
         String dataDt = requestCommand.getDateDt();
         HashMap<String, String> stationIdMap = commonMethod.stationIdDetermine();
         ArrayList<Object[]> arrayList = new ArrayList<>();
@@ -62,4 +63,5 @@ public class StationDataSaveImpl implements BatchSaveInter, Serializable {
             log.error("批量插入车站进出量数据失败!时间日期为{},{}", arrayList.get(0)[2], arrayList.get(0)[3]);
         }
     }
+
 }

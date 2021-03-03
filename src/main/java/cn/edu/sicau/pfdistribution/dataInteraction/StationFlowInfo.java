@@ -1,27 +1,28 @@
 package cn.edu.sicau.pfdistribution.dataInteraction;
 
 public class StationFlowInfo {
-    public int StationId; //车站id
+    public int stationId; //车站id
     public int inPassengers; //进站客流
     public int outPassengers; //出站客流
     public int transferPassengers; //换乘客流
 
     public StationFlowInfo() {
+
     }
 
     public StationFlowInfo(int stationId, int inPassengers, int outPassengers, int transferPassengers) {
-        StationId = stationId;
+        this.stationId = stationId;
         this.inPassengers = inPassengers;
         this.outPassengers = outPassengers;
         this.transferPassengers = transferPassengers;
     }
 
     public int getStationId() {
-        return StationId;
+        return stationId;
     }
 
     public void setStationId(int stationId) {
-        StationId = stationId;
+        this.stationId = stationId;
     }
 
     public int getInPassengers() {
@@ -51,7 +52,7 @@ public class StationFlowInfo {
     @Override
     public String toString() {
         return "StationFlowInfo{" +
-                "StationId=" + StationId +
+                "stationId=" + stationId +
                 ", inPassengers=" + inPassengers +
                 ", outPassengers=" + outPassengers +
                 ", transferPassengers=" + transferPassengers +

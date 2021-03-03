@@ -2,6 +2,7 @@ package cn.edu.sicau.pfdistribution.dao.tonghaoGet;
 
 import cn.edu.sicau.pfdistribution.Utils.DateExtendUtil;
 import cn.edu.sicau.pfdistribution.dao.GetPassengerFlowInter;
+import cn.edu.sicau.pfdistribution.dao.sql.GetDataSql;
 import cn.edu.sicau.pfdistribution.dao.sql.GetHiveSql;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.GetQuarterPassengerFlow;
 import cn.edu.sicau.pfdistribution.entity.jiaoda.ODPassengers;
@@ -89,17 +90,18 @@ public class GetPassengerFlowHive implements GetPassengerFlowInter, Serializable
             log.error("查询出现错误,原因是{}", e.getMessage(), e);
         }
     }
-    public List<GetQuarterPassengerFlow> quarterHourWithOneDay(String fromTable,String startTime,String endTime){
-        GetHiveSql getDataSQL = new GetHiveSql();
+
+    public List<GetQuarterPassengerFlow> quarterHourWithOneDay(String fromTable, String startTime, String endTime) {
+        GetDataSql getDataSQL = new GetDataSql();
         String sql = getDataSQL.getAllData(database, fromTable);
         RowMapper<GetQuarterPassengerFlow> rowMapper = new BeanPropertyRowMapper<>(GetQuarterPassengerFlow.class);
         List<GetQuarterPassengerFlow> passengerFlows = new ArrayList<>(2000000);
         try {
             log.info("正在查询数据进行分配中，请稍后……");
-            passengerFlows = jdbcTemplate.query(sql, rowMapper,startTime,endTime);
+            passengerFlows = jdbcTemplate.query(sql, rowMapper, startTime, endTime);
             log.info("查询完毕，稍后进行计算,数据量大小：{}", passengerFlows.size());
             for (int i = 0; i < 10; i++) {
-                log.info("数据为{}",passengerFlows.get(i));
+                log.info("数据为{}", passengerFlows.get(i));
             }
         } catch (Exception e) {
             log.error("查询出现错误,原因是{}", e.getMessage(), e);

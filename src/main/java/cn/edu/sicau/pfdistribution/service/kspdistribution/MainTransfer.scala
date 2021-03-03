@@ -246,6 +246,7 @@ object MainTransfer {
       val timeDiff = (pathInfo._4 * 60) / k.length
       val length = k.length - 1
       for (i <- 0 to length) {
+        try{
         if (k(i).getDirection == "o") {
           if (!"o".equals(k(i - 1).getDirection) && !"o".equals(k(i + 1).getDirection)) {
             val theStart = DateExtendUtil.timeAdditionSecond(startTime, timeDiff * i)
@@ -255,6 +256,11 @@ object MainTransfer {
             val eEdge3: DirectedEdge = k(i + 1)
             val tuple = Tuple6(theStart, theEnd, eEdge1, eEdge2, eEdge3, v)
             directedEdgeBuffer.append(tuple)
+          }
+        }
+      }catch {
+          case e:Exception=>{
+            println(pathInfo)
           }
         }
       }

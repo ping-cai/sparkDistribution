@@ -41,7 +41,7 @@ public class JsonTransfer {
                 stationPassengers.add(s.getString("AvgVolume"));
                 stationPassengers.add(s.getString("OutVolume"));
                 stationPassengers.add(s.getString("InVolume"));
-                stationP.put(s.getString("StationId"), stationPassengers);
+                stationP.put(s.getString("stationId"), stationPassengers);
             }
             for (int i = 0; i < Section_loads.length(); i++) {
                 List<String> sectionPassengers = new ArrayList<>();

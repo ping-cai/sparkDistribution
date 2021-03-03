@@ -95,7 +95,7 @@ case class MainDistribution @Autowired()(calBase: CalculateBaseInterface, getOdL
     //RDD行动操作，进行OD分配结果的RDD的整合,Map集合增量操作，x,y代指每个RDD集，
     //    val rddIntegration = odDistributionRdd.reduce((x, y) => x ++ y)
     //    logger.info("ksp:{}", rddIntegration.keys.size)
-//    SparkTest.testRdd(odDistributionRdd)
+    //    SparkTest.testRdd(odDistributionRdd)
     //    分配后进出站的数据存储
     rddStorage.StationInAndOutStorage(requestCommand, stationList)
     //    分配后每个区间的数据存储

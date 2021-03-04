@@ -55,6 +55,7 @@ public class BetterCalculateImplTest {
     OdOverflowCalculate odOverflowCalculate;
     @Autowired
     SectionCalculationImpl sectionCalculation;
+
     @Test
     public void odOverflowCalculate() {
         Map<String, String> stationNameToId = DataBaseLoading.stationNameToId;
@@ -63,8 +64,16 @@ public class BetterCalculateImplTest {
         String startTime = "2018-10-17 13:01:30";
         String endTime = "2018-10-17 13:51:02";
         PassengerFlow odFlow = new ODFlow(startTime, endTime, origin, destination, 8.0, 41);
+        String origin2 = stationNameToId.get("小什字");
+        String destination2 = stationNameToId.get("沙坪坝");
+        String startTime2 = "2018-10-17 13:01:30";
+        String endTime2 = "2018-10-17 14:51:02";
+        PassengerFlow odFlow2 = new ODFlow(startTime2, endTime2, origin2, destination2, 10.0, 91);
         OverflowData overflowData = odOverflowCalculate.odQuarterDistributionResult(odFlow);
         SectionFlow sectionFlow = sectionCalculation.overflowRDDToSectionCapacity(overflowData);
-        System.out.println(sectionFlow);
+        OverflowData overflowData2 = odOverflowCalculate.odQuarterDistributionResult(odFlow2);
+        SectionFlow sectionFlow2 = sectionCalculation.overflowRDDToSectionCapacity(overflowData2);
+        SectionFlow flow = sectionCalculation.sectionFlowAggregation(sectionFlow, sectionFlow2);
+        System.out.println(flow);
     }
 }

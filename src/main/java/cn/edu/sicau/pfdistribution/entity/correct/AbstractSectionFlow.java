@@ -75,12 +75,11 @@ public abstract class AbstractSectionFlow {
         return Objects.equals(inId, that.inId) &&
                 Objects.equals(outId, that.outId) &&
                 Objects.equals(inTime, that.inTime) &&
-                Objects.equals(outTime, that.outTime) &&
-                Objects.equals(passengers, that.passengers);
+                Objects.equals(outTime, that.outTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(inId, outId, inTime, outTime, passengers);
+        return Objects.hash(inId, outId, inTime, outTime);
     }
 }

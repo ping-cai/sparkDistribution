@@ -1,5 +1,6 @@
 package cn.edu.sicau.pfdistribution.Utils;
 
+import cn.edu.sicau.pfdistribution.entity.correct.AbstractSectionCapacity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -99,5 +100,12 @@ public class CommonMethod implements Serializable {
             stationNameMap.put(String.valueOf(name), String.valueOf(station));
         }
         return stationNameMap;
+    }
+
+    public Map<AbstractSectionCapacity, Double> sectionCapacity() {
+        String getCapacitySql = "";
+        jdbcTemplate.queryForList(getCapacitySql);
+        Map<AbstractSectionCapacity, Double> sectionCapacityMap = new HashMap<>();
+        return sectionCapacityMap;
     }
 }

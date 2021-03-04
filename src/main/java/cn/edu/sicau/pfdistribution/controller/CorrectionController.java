@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -96,6 +97,19 @@ public class CorrectionController {
         String message = hexHead + passengerFlowInfoJson;
         testSendDataToSys.SendData(receiver, TestSendDataToSys.addressList(), message);
         return message;
+    }
+
+    @GetMapping("/testNetRouter")
+    @ResponseBody
+    public String testNetRouter() throws Exception {
+        NetRouterClient receiver = testSendDataToSys.receiver();
+        byte functionCode = 0x01;
+        byte typeCode = 0x0e;
+        byte requestTypeCode=0x01;
+        byte[] bytes = {functionCode, typeCode,requestTypeCode};
+        String hexHead = TypeTransfer.toHex(bytes);
+        testSendDataToSys.SendData(receiver, TestSendDataToSys.addressList(), hexHead);
+        return hexHead;
     }
 
 }

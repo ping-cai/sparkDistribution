@@ -4,7 +4,7 @@ import java.util
 
 import cn.edu.sicau.pfdistribution.Utils.{DataBaseLoading, DateExtendUtil, TimeSlice}
 import cn.edu.sicau.pfdistribution.dao.tonghaoGet.jiaodaTest.OracleTestDataGet
-import cn.edu.sicau.pfdistribution.entity.correct._
+import cn.edu.sicau.pfdistribution.entity.correct.{SectionFlow, _}
 import cn.edu.sicau.pfdistribution.entity.{Command, DirectedEdge}
 import cn.edu.sicau.pfdistribution.entity.jiaoda.{GetQuarterPassengerFlow, QuarterSectionSave, StationInOutSave, StoreSectionPassengers}
 import cn.edu.sicau.pfdistribution.service.SectionCalculation
@@ -28,6 +28,7 @@ class SectionCalculationImpl @Autowired()(@transient getPassengerFlowOracle: Ora
     val passengerFlows = odList.asScala
     val FlowRDD = SetRdd.sc.makeRDD(passengerFlows)
     val overflowRDD = FlowRDD.map(odOverflowCalculate.odQuarterDistributionResult)
+    val sectionflow = overflowRDD.map(overflowRDDToSectionCapacity)
     //    overflowRDD.map()
     //    val list: RDD[(String, String, mutable.Map[Array[DirectedEdge], Double], Int)] = odListToArrayDirectedEdge(requestCommand, odList)
     //    val sectionSaves: RDD[QuarterSectionSave] = quarterSectionReturn(list)
@@ -35,6 +36,19 @@ class SectionCalculationImpl @Autowired()(@transient getPassengerFlowOracle: Ora
     //    val allSectionEntity = sectionMapsToEntity(dateDt, sectionMaps)
     //    allSectionEntity
     null
+  }
+
+  def sectionFlowAggregation(sectionFlow1: SectionFlow, sectionFlow2: SectionFlow): SectionFlow = {
+    val sectionCapacityMap1 = sectionFlow1.getSectionCapacityMap
+    val sectionCapacityMap2 = sectionFlow2.getSectionCapacityMap
+    for ((k, v) <- sectionCapacityMap2) {
+      if (sectionCapacityMap1.contains(k)) {
+        sectionCapacityMap1.put(k, sectionCapacityMap1(k).toDouble + v)
+      } else {
+        sectionCapacityMap1.put(k, v)
+      }
+    }
+    sectionFlow1
   }
 
   def overflowRDDToSectionCapacity(overflowData: OverflowData): SectionFlow = {
@@ -45,7 +59,20 @@ class SectionCalculationImpl @Autowired()(@transient getPassengerFlowOracle: Ora
     val outTime = overflowData.getOutTime
     val minutes = overflowData.getMinutes
     val passengers = overflowData.getPassengers
-    val capacityMap = odPath.map(odPathToSectionCapacityMap(_, minutes, inTime)).reduce((x, y) => x ++ y)
+    val capacityMap = odPath.map(odPathToSectionCapacityMap(_, minutes, inTime)).reduce((x, y) => {
+      for ((k, v) <- y) {
+        var double: Double = v
+        if (double.isNaN) {
+          double = 0.0
+        }
+        if (x.contains(k)) {
+          x.put(k, x(k) + double)
+        } else {
+          x.put(k, v)
+        }
+      }
+      x
+    })
     val sectionFlow = new SectionFlow(inName, outName, inTime, outTime, passengers, capacityMap)
     sectionFlow
   }
@@ -202,17 +229,17 @@ class SectionCalculationImpl @Autowired()(@transient getPassengerFlowOracle: Ora
     */
   def sectionMapsToEntity(dataDt: String, sectionMaps: mutable.Map[(String, String, String, String), Double]): java.util.List[AbstractSectionFlow] = {
     val sectionIdMap = DataBaseLoading.sectionIdMap
-    val arrayList: java.util.List[SectionFlow] = new util.ArrayList[SectionFlow]()
+    val arrayList: java.util.List[AbstractSectionFlow] = new util.ArrayList[AbstractSectionFlow]()
     for ((k, v) <- sectionMaps) {
       var double: Double = v
       val sectionId = sectionIdMap.get(k._3 + " " + k._4)
       if (double.isNaN) {
         double = 0.0
       }
-      val sectionPassengers = new SectionFlow(dataDt, sectionId, k._3, k._4, k._1, k._2, double)
+      val sectionPassengers: AbstractSectionFlow = new SectionFlow(dataDt, sectionId, k._3, k._4, k._1, k._2, double)
       arrayList.add(sectionPassengers)
     }
-    arrayList.asInstanceOf
+    arrayList
   }
 
 }
